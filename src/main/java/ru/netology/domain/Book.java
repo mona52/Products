@@ -1,5 +1,6 @@
 package ru.netology.domain;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class Book extends Product {
@@ -21,6 +22,19 @@ public class Book extends Product {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    @Override
+    public boolean matches(String search) {
+        if (super.matches(search)) {
+            return true;
+        }
+        if (author.toLowerCase().contains(search.toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {

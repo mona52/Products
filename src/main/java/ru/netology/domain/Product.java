@@ -40,6 +40,13 @@ public class Product {
         this.price = price;
     }
 
+    public boolean matches(String search) {
+        if (name.toLowerCase().contains(search.toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

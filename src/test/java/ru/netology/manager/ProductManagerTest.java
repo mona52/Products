@@ -61,4 +61,32 @@ class ProductManagerTest {
         Product[] expected = new Product[]{smartphone1, smartphone2};
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void matchesBook() {
+        boolean actual = book1.matches("book");
+        boolean expected = true;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void noMatchesBook() {
+        boolean actual = book2.matches("aaaa");
+        boolean expected = false;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void matchesSmartphones() {
+        boolean actual = smartphone1.matches("Smartphone");
+        boolean expected = true;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void noMatchesSmartphones() {
+        boolean actual = smartphone2.matches("uuuuuuUU");
+        boolean expected = false;
+        assertEquals(actual, expected);
+    }
 }

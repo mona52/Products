@@ -20,9 +20,10 @@ public class ProductManager {
     }
 
     public Product[] searchBy(String text) {
+        String textLowerCase = text.toLowerCase();
         Product[] result = new Product[0];
         for (Product product : repository.findAll()) {
-            if (matches(product, text)) {
+            if (product.matches(textLowerCase)) {
                 Product[] tmp = new Product[result.length + 1];
                 System.arraycopy(result, 0, tmp, 0, result.length);
                 tmp[tmp.length - 1] = product;
@@ -32,37 +33,6 @@ public class ProductManager {
         return result;
     }
 
-    public boolean matches(Product product, String search) {
-
-        String searchLowerCase = search.toLowerCase();
-
-        if (product instanceof Book) {
-            Book book = (Book) product;
-            String bookLowerCase = book.getName().toLowerCase();
-            String authorLowerCase = book.getAuthor().toLowerCase();
-
-            if (bookLowerCase.contains(searchLowerCase)) {
-                return true;
-            }
-            if (authorLowerCase.contains(searchLowerCase)) {
-                return true;
-            }
-        }
-
-        if (product instanceof Smartphone) {
-            Smartphone smartphone = (Smartphone) product;
-            String smartphoneLowerCase = smartphone.getName().toLowerCase();
-            String producerLowerCase = smartphone.getProducer().toLowerCase();
-
-            if (smartphoneLowerCase.contains(searchLowerCase)) {
-                return true;
-            }
-            if (producerLowerCase.contains(searchLowerCase)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 
     public void removeById(int id) {
